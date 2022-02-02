@@ -121,7 +121,6 @@ select{
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 220px;
-  left: 52%;
 }
 
 .submit:disabled {

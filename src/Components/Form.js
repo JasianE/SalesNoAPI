@@ -10,10 +10,14 @@ function Form(){
     const [address, setAddress] = useState('')
     const [person, setPerson] = useState('Alisa')
     const [payment, setPayment] = useState('cash')
-    const [id, setId] = useState('')
     const [pickup, setPickup] = useState('Francis')
 
     const dispatch = useDispatch()
+
+    const reverse = () => {
+        setName(''); setEmail(''); setNumber(0); setAddress(''); setPerson('Alisa'); setPayment('cash'); 
+        setPickup('Francis')
+    }
 
     const handleChange = (e) => {
         switch(e.target.name){
@@ -37,9 +41,6 @@ function Form(){
             case 'payment':
                 setPayment(e.target.value)
                 break;
-            case 'id':
-                setId(e.target.value)
-                break;
             case 'pickup':
                 setPickup(e.target.value)
                 break;
@@ -48,13 +49,13 @@ function Form(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const data = {name, email, number, address, person, payment, id, pickup}
-        
-        const response = 'poo'
-        axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
+        const today = new Date()
+        const data = {name, email, number, address, person, payment, pickup, date: new Date()}
+        const response = axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
         .then(response => {
             if(response.status !== 200){
                 alert('An error has occured! Go on slack and alert Jun', `Error: ${response}`)
+                reverse()
             } else {
                 dispatch(done())
             }
@@ -148,19 +149,6 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>Box ID (found at bottom of box)</h1>
-                <input 
-                name='id'
-                type='text'
-                value={id}
-                required
-                onChange = {handleChange}
-                placeholder='Box ID e.g. 12'
-                className='standard'
-                />
-            </div>
-
-            <div className='card'>
                 <h1>Who will you pick up the box from?</h1>
                 <h4>*Francis is in downtown/East York and Melissa is in Scarborough</h4>
                 <select name='pickup' value={pickup} onChange={handleChange}>
@@ -169,7 +157,7 @@ function Form(){
                 </select>
             </div>
 
-            <button className = 'submit' type = 'submit' onClick={handleSubmit}>Order</button>
+            <button className = 'submit' type = 'submit' onClick={handleSubmit}>Submit!</button>
         </form>
     )
 }
