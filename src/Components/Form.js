@@ -65,7 +65,7 @@ function Form(){
         //Scalability??? whats that/!?!?!?
         <form className='info'>
             <div className='card'>
-                <h1>Who are you?</h1>
+                <h1 className='bigText'>Who are you?</h1>
                 <select name = 'person' value={person} onChange={handleChange}>
                     <option value="Alisa">Alisa</option>
                     <option value="Andrew">Andrew</option>
@@ -91,7 +91,7 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>Customer Name</h1>
+                <h1 className='bigText' >Customer Name</h1>
                 <input 
                 name = 'name'
                 type = 'text'
@@ -104,7 +104,7 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>Customer Email (Optional, recommended)</h1>
+                <h1 className='bigText' >Customer Email (Optional, recommended)</h1>
                 <input 
                 name = 'email'
                 type = 'email'
@@ -116,7 +116,7 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>Quantity Bought By Customer</h1>
+                <h1 className='bigText' >Quantity Bought By Customer</h1>
                 <input 
                 name = 'number'
                 type = 'number'
@@ -129,7 +129,7 @@ function Form(){
             </div>
             
             <div className='card'>
-                <h1>Customer Address (Only if dropping off at customer's house)</h1>
+                <h1 className='bigText' >Customer Address (Only if dropping off at customer's house)</h1>
                 <input 
                 name = 'address'
                 type = 'text'
@@ -141,7 +141,7 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>How did they pay?</h1>
+                <h1 className='bigText' >How did they pay?</h1>
                 <select name='payment' value={payment} onChange={handleChange}>
                     <option value='cash'>Cash</option>
                     <option value='e-transfer'>E-transfer</option>
@@ -149,8 +149,8 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1>Who will you pick up the box from?</h1>
-                <h4>*Francis is in downtown/East York and Melissa is in Scarborough</h4>
+                <h1 className='bigText' >Who will you pick up the box from?</h1>
+                <h4 className='small'>*Francis is in downtown/East York and Melissa is in Scarborough</h4>
                 <select name='pickup' value={pickup} onChange={handleChange}>
                     <option value='Francis'>Francis</option>
                     <option value='Melissa'>Melissa</option>
