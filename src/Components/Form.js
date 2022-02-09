@@ -11,6 +11,7 @@ function Form(){
     const [person, setPerson] = useState('Alisa')
     const [payment, setPayment] = useState('cash')
     const [pickup, setPickup] = useState('Francis')
+    const [discount, setDiscount] = useState('0')
 
     const dispatch = useDispatch()
 
@@ -44,13 +45,19 @@ function Form(){
             case 'pickup':
                 setPickup(e.target.value)
                 break;
+            case 'discount':
+                setDiscount(e.target.value)
+                break;
+            default:
+                break;
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const today = new Date()
-        const data = {name, email, number, address, person, payment, pickup, date: new Date()}
+        const today = new Date().toDateString()
+        const data = {name, email, number, address, person, payment, pickup, discount, date: today, discount: `${discount}%`}
+
         const response = axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
         .then(response => {
             if(response.status !== 200){
@@ -129,7 +136,7 @@ function Form(){
             </div>
             
             <div className='card'>
-                <h1 className='bigText' >Customer Address (Only if dropping off at customer's house)</h1>
+                <h1 className='bigText' >Customer City</h1>
                 <input 
                 name = 'address'
                 type = 'text'
@@ -154,6 +161,29 @@ function Form(){
                 <select name='pickup' value={pickup} onChange={handleChange}>
                     <option value='Francis'>Francis</option>
                     <option value='Melissa'>Melissa</option>
+                </select>
+            </div>
+
+            <div className='card'>
+                <h1 className='bigText' >What percent discount did you give them?</h1>
+
+                <select name='discount' value={discount} onChange={handleChange}>
+                    <option value='0'>0</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    <option value='6'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9'>9</option>
+                    <option value='10'>10</option>
+                    <option value='11'>11</option>
+                    <option value='12'>12</option>
+                    <option value='13'>13</option>
+                    <option value='14'>14</option>
+                    <option value='15'>15</option>
                 </select>
             </div>
 
