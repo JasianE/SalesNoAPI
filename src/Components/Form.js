@@ -11,7 +11,8 @@ function Form(){
     const [person, setPerson] = useState('Alisa')
     const [payment, setPayment] = useState('cash')
     const [pickup, setPickup] = useState('Francis')
-    const [discount, setDiscount] = useState('0')
+    const [discount, setDiscount] = useState(0)
+    const [type, setType] = useState('New')
 
     const dispatch = useDispatch()
 
@@ -46,7 +47,12 @@ function Form(){
                 setPickup(e.target.value)
                 break;
             case 'discount':
-                setDiscount(e.target.value)
+                if(parseInt(e.target.value) < 4 && parseInt(e.target.value) > -1){
+                   setDiscount(e.target.value)
+                }
+                break;
+            case 'type':
+                setType(e.target.value)
                 break;
             default:
                 break;
@@ -56,7 +62,7 @@ function Form(){
     const handleSubmit = (e) => {
         e.preventDefault()
         const today = new Date().toDateString()
-        const data = {name, email, number, address, person, payment, pickup, discount, date: today, discount: `${discount}%`}
+        const data = {name, email, number, address, person, payment, pickup, discount, date: today, discount: `${discount}%`, type}
 
         const response = axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
         .then(response => {
@@ -94,6 +100,14 @@ function Form(){
                     <option value="Sarah">Sarah</option>
                     <option value="Shereny">Shereny</option>
                     <option value="Thomas">Thomas</option>
+                </select>
+            </div>
+
+            <div className='card'>
+                <h1 className='bigText'>Which Type Of Box Did You Sell?</h1>
+                <select name = 'type' value={type} onChange={handleChange}>
+                    <option value="New">New</option>
+                    <option value="Old">Old</option>
                 </select>
             </div>
 
@@ -165,26 +179,16 @@ function Form(){
             </div>
 
             <div className='card'>
-                <h1 className='bigText' >What percent discount did you give them?</h1>
-
-                <select name='discount' value={discount} onChange={handleChange}>
-                    <option value='0'>0</option>
-                    <option value='1'>1</option>
-                    <option value='2'>2</option>
-                    <option value='3'>3</option>
-                    <option value='4'>4</option>
-                    <option value='5'>5</option>
-                    <option value='6'>6</option>
-                    <option value='7'>7</option>
-                    <option value='8'>8</option>
-                    <option value='9'>9</option>
-                    <option value='10'>10</option>
-                    <option value='11'>11</option>
-                    <option value='12'>12</option>
-                    <option value='13'>13</option>
-                    <option value='14'>14</option>
-                    <option value='15'>15</option>
-                </select>
+                <h1 className='bigText' ><b>DO NOT ADD IF SELLING NEW BOX </b>What discount did you give them? (In dollars)</h1>
+                <input 
+                name = 'discount'
+                type = 'number'
+                value = {discount}
+                required
+                onChange = {handleChange}
+                placeholder='Quantity'
+                className='standard'
+                />
             </div>
 
             <button className = 'submit' type = 'submit' onClick={handleSubmit}>Submit!</button>
