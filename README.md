@@ -4,6 +4,8 @@ A web-based sales form built with **React** to automate data entry into Google S
 
 ## Overview
 
+Link: https://salesform-8jtqzuztm-derek-chens-projects-0fa289f3.vercel.app/
+
 This project was designed to replace repetitive manual data entry with a simple, structured form that automatically sends submissions to a centralized Google Sheet.
 
 The focus was on building something **practical and usable in a real environment**, not just a demo project. It improved efficiency and reduced errors for day-to-day team operations.
