@@ -62,12 +62,12 @@ function Form(){
     const handleSubmit = (e) => {
         e.preventDefault()
         const today = new Date().toDateString()
-        const data = {name, email, number, address, person, payment, pickup, discount, date: today, discount: `${discount}%`, type}
+        const data = {name, email, number, address, person, payment, pickup, date: today, discount: `${discount}%`, type}
 
-        const response = axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
+        axios.post('https://sheet.best/api/sheets/e92fff05-0f61-4862-8541-3c395f639054', data)
         .then(response => {
             if(response.status !== 200){
-                alert('An error has occured! Go on slack and alert Jun', `Error: ${response}`)
+                alert('An error has occurred! Go on slack and alert Jun', `Error: ${response}`)
                 reverse()
             } else {
                 dispatch(done())
